@@ -1,0 +1,608 @@
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title></title>
+		<style>
+			
+		</style>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="logo">
+							<span class="icon fa-gem"></span>
+						</div>
+						<div class="content">
+							<div class="inner">
+								<h1>Saleh Abdallah</h1>
+								<h2>Data Analysis Portfolio <br> 
+									<h3>Excel, SQL, Python, Tableau, Power BI & Data Studio</h3></h2>
+								 
+							</div>
+						</div>
+						<nav>
+							<ul>
+							 	<li><a href="#auto"><b>Auto</b></a></li> 
+								  
+										  
+								 
+								  <li><a href="#sales"><b>Sales</b></a></li>
+								<li><a href="#revenue"><b>Revenue</b></a></li> 
+								
+								<li><a href="#bank"><b>Bank</b></a></li>
+								
+								<li><a href="#ecomm"><b>Ecommerce</b></a></li> 
+								<li><a href="#hotel"><b>Hotel</b></a></li> 
+								<li><a href="#hr"><b>HR</b></a></li> 								
+								
+								
+								<li><a href="#wages"><b>Wages</b></a></li> 
+								<li><a href="#retail"><b>Retail</b></a></li> 
+								
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Sales -->
+							<article id="sales">
+								<h2 class="major">Sales Analysis Project</h2> 
+								<p><b> Introduction </b><br>The customer is a wholesale corporation which operates a chain of stores in the US. It sells a wide range of merchandise such as furniture, office supplies and electronis.</p>
+								<p><b> Business Task </b><br>The sales director wants a detailed report to show the strengths and weaknesses of the overall sales activities in the different regions and states to ensure a successful sales strategy for the company.</p>
+									<p style="margin-bottom:0;"><b> Requirements </b><br>
+										<ul>	<li> What regions achieved their goals so far?<br></li>
+											<li>What states / cities have the most sales?<br></li>
+												<li>In what segments are the most sales?<br></li>
+													<li>What is the monthly total sales and profit?<br></li>
+														<li>What is the total sales and profit compared to the previous years?</li></ul>
+									</p>
+									<p><b> Data Collection & Transformation</b><br>The data is in multiple sheets in an excel file. The Orders Add-On data is added to the main Orders data through a Union, and then to the Returns data through a Left Join. </p>
+									 <a class="nospace"><img src="images/sales_dm.JPG"  alt="" /></a>	<br><br>
+									<p style="margin-bottom:0;"><b> Calculations </b><br>
+									<ul>	<li>Combined data from the 'Goals by Region' data source into the primary Orders data source through data blending.<br></li>
+											<li>Country code = TRIM( SPLIT( [Order ID], "-", 1 ) )<br></li>
+											<li>City Sales % of State = (SUM([Sales])/SUM([Sales - Exclude City])) <br> </li>
+												<li>Profit % = [Profit] / [Sales] <br></li>
+													<li>Sales - Exclude City = { EXCLUDE [City] : SUM([Sales])} <br></li>
+														<li>Slaes vs Goal = SUM([Sales])-SUM([Goals by Region_Segment (Data Supplies)].[Goal]) <br>	</li>	
+															<li>Top Tier = IF SUM([Sales])>[Top Tier Customer Threshold] THEN "Top Tier" ELSE"All Other" END</li>				
+									</ul></p>
+									<p><b> Sales Dashboard</b><br>Click the picture to open and try the dashboard in Tableau. </p>
+								<a href="https://public.tableau.com/app/profile/saleh.abdallah/viz/SalesAnalysis_16378903267510/ExecDashboard" target="_blank" class="nospace"><img src="images/sales.jpg" alt="" width="750" /></a>
+								
+								<br><br>
+								<p style="margin-bottom:0;"><b> Findings</b>
+									<ul><li>The West region achieved the highest amount of sales<br></li>	
+										<li>The East and South did not meet their goals<br></li>	
+										<li>New York and California had the highest sales between the states<br></li>	
+										<li>Chairs, phones and appliances made up most of the sales <br></li>	
+							</article>
+
+						<!-- Revenue -->
+							<article id="revenue">
+								<h2 class="major">Revenue Analysis Project</h2>
+								<p><b> Introduction </b><br>The customer is an international retail group that specializes in selling bikes such as mountain bikes, road bikes, touring bikes, etc. They also sell bike clothings and accessories. The store has locations in North America, Europe and Australia.</p>
+								<p><b> Business Task </b><br>The store manager noticed that the returned products have increased recently and would like to have a report to overview the sales workflow and the return rates in the different regions.</p>
+									<p style="margin-bottom:0;"><b> Requirements </b><br>
+										<ul>	<li> What products yield the highest revenue?<br></li>
+											<li>What products have the highest return rate?<br></li>
+												<li>What is the total orders by category and subcategory?<br></li>
+													<li>What is the monthly revenue trend?</li></ul>
+									</p>
+									<p><b> Data Collection</b><br>The data is in multiple csv files. There are 5 dimension tables (customers, products, categories, sub-categories and territories) and two fact tables (sales and returns).</p>
+									
+									<p style="margin-bottom:0;"><b> Data Transformation </b><br>
+									<ul>	<li>Use first row as headers<br></li>	
+										<li>Change date types, rename columns and remove columns<br></li>
+											<li>Extract  and merge columns<br></li>
+											<li>Insert date fields (day name & month name)<br> </li>
+											<li>Insert custom columns<br> </li>
+												<li>Insert conditional columns <br></li>
+													
+									</ul></p>
+									<p><b> Data Model</b></p>
+									 <a class="nospace"><img src="images/inv_dm.JPG"  alt="" width="750" /></a>	<br><br>
+									 <p style="margin-bottom:0;"><b> Calculations</b>
+									 <ul><li>Total Orders = DISTINCTCOUNT(sales_f[OrderNumber])<br></li>	
+										 <li>Total Profit = [Total Revenue] - [Total Cost]<br></li>	
+										 <li> Total Returns = COUNTA(returns_f[ReturnQuantity])<br></li>
+										 <li>Total Revenue = SUMX(sales_f, sales_f[OrderQuantity] * RELATED(product_d[ProductPrice]))<br></li>
+											<li>Prev Month Orders = CALCULATE([Total Orders], DATEADD(calendar_d[Date],-1,MONTH))<br></li>
+												<li>Prev Month Revenue = CALCULATE([Total Revenue], DATEADD(calendar_d[Date],-1,MONTH))</li>
+												<li>All Orders = CALCULATE([Total Orders],All(sales_f))</li>
+												<li>All Returns = CALCULATE([Total Returns], All(returns_f))</li>
+												<li>% of All Orders = [Total Orders] / [All Orders]</li>
+										<li>Bike Returns = CALCULATE([Total Returns], product_category_d[CategoryName] = "Bikes")</li>
+												
+												
+												</ul></p>
+									<p><b> Revenue Dashboard</b><br>Click the picture to open and try the dashboard in Power BI. </p>
+								<a href="https://app.powerbi.com/groups/me/reports/b4e067f6-e528-43cf-9753-a439b95acfd2/ReportSection?ctid=7b8a41e4-2f76-4eef-87d3-f75dd19c0e56" target="_blank" class="nospace"><img src="images/inv_db.JPG" alt="" width="750" /></a>
+							
+								<br><br>
+								<p style="margin-bottom:0;"><b> Findings</b>
+									<ul><li>The revenue has increased drastically since August 2016 accross all locations<br></li>	
+										<li>The return rate on HL Tires, LL Road Tire and Sport Helmets is high compared to other products<br></li>	
+										<li>Most of the orders are from the following categories: Tires, Road bikes and Helmets <br></li>	
+										
+							
+							</article>
+
+						<!-- Bank -->
+							<article id="bank">
+								<h2 class="major">Bank Analysis Project</h2>
+								<p><b> Introduction </b><br>The customer is a national bank with branches in the UK (England, Scotland, Ireland and Wales). </p>
+								<p><b> Business Task </b><br>The bank is a launching new products and the business manager needs more information to identify target customers and specify how the products will satisfy their needs.</p>
+									<p style="margin-bottom:0;"><b> Requirements </b><br>
+										<ul>	<li> Where are most of our customers located?<br></li>
+											<li>What are our customers age groups?<br></li>
+											<li>What are their job classifications?</li>
+											<li>Which customers have the highest balances?<br></li></ul>
+													
+									
+																									
+												
+									
+									<p><b> Data Transformation and Analysis</b><br>
+									<a>The data is in a CSV file</a>. It is transformed and analyzed using Python.</a>
+									<a href="https://github.com/saleh-abdallah/portfolio/blob/main/bank_customers.ipynb" target="_blank" style="color:blue">Please click here to view the code and check the analysis.  </a>
+									</p>
+									
+									<p style="margin-bottom:0;"><b> Findings</b>
+									<ul><li>Most of the customers are in England and Scotland<br></li>	
+										<li>Most customers in England and Wales belong to the White collar classification unlike Scotland and Northern Ireland<br></li>	
+										<li>Most of the customers are aged between 30 and 40 years<br></li>	
+										<li>Male customers are more than female by a small margin<br></li>	
+										<li>A young female customer from England has the highest balance<br></li>	
+																		   
+											   
+											   </ul></p>
+							</article>
+
+						<!-- HR -->
+							<article id="hr">
+								<h2 class="major">HR Analysis Project</h2>
+								<p><b> Introduction </b><br>The customer is a manufacturing company that operates in different states.</p>
+								<p><b> Business Task </b><br>The HR manager wants a report to review the overall compensation scale and staffing distribution in the organization to implement a new retention strategy.</p>
+									<p style="margin-bottom:0;"><b> Requirements </b><br>
+										<ul><li>What are the salary ranges?<br></li>
+												<li> What is the number of staff by gender and position?<br></li>
+											<li>What are the salaries within the same department?<br></li>
+											<li>What are the salaries within different departments?<br></li>			</ul>
+									</p>
+									<p><b> Data Collection & Transformation</b><br>
+										<a>The data is in a  <a href="https://github.com/saleh-abdallah/portfolio/blob/main/hr_schema.JPG" target="_blank" style="color:blue" >database</a>. It is extracted and transformed using MySQL before importing it to Power BI.</a>
+										<a href="https://github.com/saleh-abdallah/portfolio/blob/main/hr_analysis.sql" target="_blank" style="color:blue">Please click here to view the SQL code.  </a>
+									 
+									<p ><b> Dashboard </b><br>Click the picture to view the dashboard in Power BI. </p>
+								<a href="https://app.powerbi.com/groups/me/reports/366b3c4b-ede0-453a-8b5f-cfc5ed1f49e9/ReportSection?ctid=7b8a41e4-2f76-4eef-87d3-f75dd19c0e56" target="_blank" class="nospace"><img src="images/hr_db.JPG" alt="" width="750" /></a>
+								
+								<br><br>
+								<p style="margin-bottom:0;"><b> Findings</b>
+									<ul><li>The highest salaries are in the Sales and Marketing departments<br></li>	
+										<li>Males are more than females in all departments<br></li>	
+										<li>Most of the staff are in the Development and Production departments<br></li>
+										<li>Most of the salaries are between 50k and 70k<br></li>	
+									    <li>There are huge differences in some salaries for the same positions<br></li>	
+										
+
+							</article>
+
+						<!-- Hotel -->
+							<article id="hotel">
+								<h2 class="major">Hotel Analysis Project</h2>
+								<p><b> Introduction </b><br>The customer is a multinational hotel group that operates hotels and resorts in North America, Latin America and Europe.</p>
+								<p><b> Business Task </b><br>The hotel manager asked for a report that shows the total bookings and revenue in the last three years.</p>
+									<p style="margin-bottom:0;"><b> Requirements </b><br>
+										<ul>	<li> What is the total bookings and total revenue?<br></li>
+											<li>What is the revenue in each country?<br></li>
+												<li>What months / quarters of the year generate the highest revenue?<br></li></ul>
+														
+									</p>
+									<p><b> Data Collection & Transformation</b><br>
+										<a>The data is in three separate text files per year (2018, 2019 and 2020). It is extracted using MySQL and imported into Tableau.</a>
+										<a href="https://github.com/saleh-abdallah/portfolio/blob/main/hotel_analysis.sql" target="_blank" style="color:blue">Please click here to view the SQL code.  </a>
+									 
+									<p ><b> Dashboard </b><br>Click the picture to open and try the dashboard in Tableau. </p>
+								<a href="https://public.tableau.com/app/profile/saleh.abdallah/viz/HotelAnalysis_16378903866870/Dashboard1" target="_blank" class="nospace"><img src="images/hotel.JPG" alt="" width="750" /></a>
+								
+								<br><br>
+								<p style="margin-bottom:0;"><b> Findings</b>
+									<ul><li>The revenue increases in the holiday season during the summer<br></li>	
+										<li>US and UK make 40% of the toal reveue<br></li>	
+										
+										
+
+							</article>
+
+							<!-- E-Comm -->
+							<article id="ecomm">
+								<h2 class="major">ECommerce Website Analysis</h2>
+								<p><b> Introduction </b><br>The customer is a manufacturing company that operates in different states.</p>
+								<p><b> Business Task </b><br>The website manager wants to analyze the website performance amd customer shopping trends for implementing a strategy to increase web traffic and improve customer experience.</p>
+									
+									<p><b> Data Collection & Analysis</b><br>
+										<a>The data is in a  <a href="https://github.com/saleh-abdallah/portfolio/blob/main/ecomm_schema.JPG" target="_blank" style="color:blue" >database</a>. It was analyzed using MySQL.</a>
+										<a href="https://github.com/saleh-abdallah/portfolio/blob/main/ecommerce_analysis.sql" target="_blank" style="color:blue">Please click here to view the SQL code and check the analysis.  </a>
+							</article>
+
+							<!-- Auto -->
+							<article id="auto">
+								<h2 class="major">Auto Sales Analysis Project</h2>
+								
+								<p><b> Introduction </b><br>The customer is an auto dealer based in Australia. They sell various car makes and models with different engine types. </p>
+								<p><b> Business Task </b><br>The sales manager wants a report to show the overall sales activities in the different states and territories in addition to the income and expenses for the first two quarters.</p>
+									<p style="margin-bottom:0;"><b> Requirements </b><br>
+										<ul>	<li> What is the total sales by region?<br></li>
+											<li>What is the total sales by make and model?<br></li>
+											<li>What are the sales of petrol vs diesel vehicles?</li>
+											<li>What is the total sales in Q2 compared to Q1?<br></li></ul>
+													
+															
+									 
+									<p><b> Sales Dashboard</b><br>The dashboard was designed and created using Excel. </p>
+								<a href="https://github.com/saleh-abdallah/portfolio/blob/main/auto_db.jpg" target="_blank" class="nospace"><img src="images/auto_db.jpg" alt="" width="750" /></a>
+
+								<br><br>
+								<p style="margin-bottom:0;"><b> Findings</b>
+									<ul><li>The highest sales were in New South Wales followed by Queensland<br></li>	
+										<li>Toyota sales make 50% of the total sales followed by Nissan then Mitsubishi<br></li>	
+										<li>Diesel sales were close to Petrol sales in Q1 but then dropped in Q2<br></li>	
+										<li>Sales were higher and met the targerts in Q1 but did not in Q2<br></li>	
+							</article>
+
+							<!-- Wages -->
+							<article id="wages">
+								<h2 class="major" >Wages Analysis</h2>
+								<p><b> Introduction </b><br>The customer is an international professional contracting organization. </p>
+								<p><b> Business Task </b><br>The recruitment manager wants some information about the wages within the different jobs and cities.</p>
+									<p style="margin-bottom:0;"><b> Requirements </b><br>
+										<ul>	<li> What are the highest paid jobs?<br></li>
+											<li>What are the highest paid jobs in different cities?<br></li>
+											<li>What is the male and female average wage?</li>
+											<li>Which jobs have the most hires?<br></li>
+											<li>How many Data jobs are there?<br></li></ul>
+													
+															
+									 
+											<p><b> Data Transformation and Analysis</b><br>
+												<a>The data is in a CSV file</a>. It is cleaned, transformed and analyzed using Python.</a>
+												<a href="https://github.com/saleh-abdallah/portfolio/blob/main/wages.ipynb" target="_blank" style="color:blue">Please click here to view the code and check the analysis.  </a>
+												</p>
+												
+												<p style="margin-bottom:0;"><b> Findings</b>
+												<ul><li>DB Admin II, Biostatistician and Computer Systems Analyst are ranked top 3 as the highest average salaries<br></li>	
+													<li>Male and Female average salaries are almost the same with a slight edge to Female salaries<br></li>	
+													<li>There are 11 total Data jobs<br></li>	
+													<li>Executive Secretary, Structural Analysis Engineer and Legal Assistant have the highest number of hires <br></li>	
+													
+																					   
+														   
+														   </ul></p>
+									
+							</article>
+
+
+							<!-- Retail -->
+							<article id="retail">
+								<h2 class="major">Retail Sales Analysis </h2>
+								
+								<p><b> Introduction </b><br>The customer is an auto dealer based in Australia. They sell various car makes and models with different engine types. </p>
+								<p><b> Business Task </b><br>The sales manager wants a report to show the overall sales activities in the different states and territories in addition to the income and expenses for the first two quarters.</p>
+									<p style="margin-bottom:0;"><b> Requirements </b><br>
+										<ul>	<li> What is the total sales by region?<br></li>
+											<li>What is the total sales by make and model?<br></li>
+											<li>What are the sales of petrol vs diesel vehicles?</li>
+											<li>What is the total sales in Q2 compared to Q1?<br></li></ul>
+													
+															
+									
+									<p><b> Sales Dashboard</b><br>Click the picture to view the dashboard in Google Data Studio. </p>
+								<a href="https://datastudio.google.com/s/kgQlbXE94Bc" target="_blank" class="nospace"><img src="images/sales_ds.JPG" alt="" width="750" /></a>
+
+								<br><br>
+								<p style="margin-bottom:0;"><b> Findings</b>
+									<ul><li>The highest sales were in New South Wales followed by Queensland<br></li>	
+										<li>Toyota sales make 50% of the total sales followed by Nissan then Mitsubishi<br></li>	
+										<li>Diesel sales were close to Petrol sales in Q1 but then dropped in Q2<br></li>	
+										<li>Sales were higher and met the targerts in Q1 but did not in Q2<br></li>	
+							</article>
+
+
+						<!-- Contact -->
+							<article id="contact">
+								<!-- <h2 class="major">Contact</h2>--> 
+								<h3>Thank you for taking the time to check my data analysis portfolio. <br><br>If you have any questions, please feel free to contact me at<span style="color:blue;"> saleh.i.abdallah@gmail.com </span></h3>
+							</article>
+
+						<!-- Elements -->
+							<article id="elements">
+								<h2 class="major">Elements</h2>
+
+								<section>
+									<h3 class="major">Text</h3>
+									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+									<hr />
+									<h2>Heading Level 2</h2>
+									<h3>Heading Level 3</h3>
+									<h4>Heading Level 4</h4>
+									<h5>Heading Level 5</h5>
+									<h6>Heading Level 6</h6>
+									<hr />
+									<h4>Blockquote</h4>
+									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+									<h4>Preformatted</h4>
+									<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+    print 'Iteration ' + i;
+    deck.shuffle();
+    i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+								</section>
+
+								<section>
+									<h3 class="major">Lists</h3>
+
+									<h4>Unordered</h4>
+									<ul>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Alternate</h4>
+									<ul class="alt">
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Ordered</h4>
+									<ol>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis viverra.</li>
+										<li>Felis enim feugiat.</li>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis lorem.</li>
+										<li>Felis enim et feugiat.</li>
+									</ol>
+									<h4>Icons</h4>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+									</ul>
+
+									<h4>Actions</h4>
+									<ul class="actions">
+										<li><a href="#" class="button primary">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 class="major">Table</h3>
+									<h4>Default</h4>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Item One</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Two</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Three</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Four</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Five</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+
+									<h4>Alternate</h4>
+									<div class="table-wrapper">
+										<table class="alt">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Item One</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Two</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Three</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Four</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Five</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</section>
+
+								<section>
+									<h3 class="major">Buttons</h3>
+									<ul class="actions">
+										<li><a href="#" class="button primary">Primary</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button">Default</a></li>
+										<li><a href="#" class="button small">Small</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
+										<li><a href="#" class="button icon solid fa-download">Icon</a></li>
+									</ul>
+									<ul class="actions">
+										<li><span class="button primary disabled">Disabled</span></li>
+										<li><span class="button disabled">Disabled</span></li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 class="major">Form</h3>
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<label for="demo-name">Name</label>
+												<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
+											</div>
+											<div class="field half">
+												<label for="demo-email">Email</label>
+												<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
+											</div>
+											<div class="field">
+												<label for="demo-category">Category</label>
+												<select name="demo-category" id="demo-category">
+													<option value="">-</option>
+													<option value="1">Manufacturing</option>
+													<option value="1">Shipping</option>
+													<option value="1">Administration</option>
+													<option value="1">Human Resources</option>
+												</select>
+											</div>
+											<div class="field half">
+												<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+												<label for="demo-priority-low">Low</label>
+											</div>
+											<div class="field half">
+												<input type="radio" id="demo-priority-high" name="demo-priority">
+												<label for="demo-priority-high">High</label>
+											</div>
+											<div class="field half">
+												<input type="checkbox" id="demo-copy" name="demo-copy">
+												<label for="demo-copy">Email me a copy</label>
+											</div>
+											<div class="field half">
+												<input type="checkbox" id="demo-human" name="demo-human" checked>
+												<label for="demo-human">Not a robot</label>
+											</div>
+											<div class="field">
+												<label for="demo-message">Message</label>
+												<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" class="primary" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</form>
+								</section>
+
+							</article>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<br>
+						 <ul class="icons alt"> 
+							
+							<li><a href="#contact"><i class="fa">&#xf0e0;</i></a></li> 
+
+							
+							
+							<!-- <li><a href="#contact" ><i style="font-size:22px" class="fa">&#xe0be;</i></a></li>
+							<li><a href="#contact" ><i style="font-size:22px" class="fa">&#xe158;</i></a></li>
+							<li><a href="#contact" ><i style="font-size:22px" class="fa">&#xe0e1;</i></a></li> -->
+						
+						
+							
+				
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
